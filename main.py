@@ -1,25 +1,23 @@
-from fastapi import FastAPI, File, UploadFile
-import random 
+from fastapi import FastAPI, File, UploadFile, Form
+import random
 
 app = FastAPI()
 
-
 @app.post("/register")
 async def register(
-    img1: UploadFile = File(...),
-    img2: UploadFile = File(...)
-):
-    return {
-        "result": random.choice([True, False])
-    }
-
+    image_register: UploadFile = File(...), 
+    image_name: str = Form(...)
+    ):
+    # Here, you would normally process the image and the text string
+    # For now, we'll just return a random boolean
+    return {"result": random.choice([True, False])}
 
 @app.post("/compare")
 async def compare(
-    img1: UploadFile = File(...),
-    img2: UploadFile = File(...)
-):
-    return {
-        "result": random.choice([True, False])
-    }
-    
+    image_register: UploadFile = File(...), 
+    image_verify: UploadFile = File(...),
+    image_name: str = Form(...)
+    ):
+    # Here, you would normally process the image and the text string
+    # For now, we'll just return a random boolean
+    return {"result": random.choice([True, False])}
